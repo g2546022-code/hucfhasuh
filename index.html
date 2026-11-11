@@ -1,0 +1,141 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11151b">
+  <title>HIACE CUSTOM LAB | 2D Simulator</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">H</span>
+      <div>
+        <strong>HIACE CUSTOM LAB</strong>
+        <small>200 SERIES · 2D CUSTOM SIMULATOR</small>
+      </div>
+    </div>
+    <span class="model-tag">SUPER GL / 6型イメージ</span>
+  </header>
+
+  <main class="layout">
+    <section class="visual-panel">
+      <div class="visual-heading">
+        <div>
+          <p class="eyebrow">LIVE PREVIEW</p>
+          <h1>愛車をカスタムする。</h1>
+        </div>
+        <span class="live-dot">LIVE</span>
+      </div>
+
+      <nav class="view-tabs" aria-label="表示角度">
+        <button class="view-tab active" data-view="side">SIDE <small>横</small></button>
+        <button class="view-tab" data-view="front">FRONT <small>正面</small></button>
+        <button class="view-tab" data-view="rear">REAR <small>後ろ</small></button>
+      </nav>
+
+      <div class="canvas-wrap">
+        <div class="canvas-grid"></div>
+        <svg id="vehicle" viewBox="0 0 1200 700" role="img" aria-label="ハイエースのリアルな2Dイラスト"></svg>
+        <div class="canvas-caption">
+          <span id="viewName">SIDE VIEW</span>
+          <span>ILLUSTRATION / NOT TO SCALE</span>
+        </div>
+      </div>
+
+      <div class="preview-footer">
+        <span><i></i> カスタム内容をリアルタイム反映</span>
+        <span>2D VECTOR ILLUSTRATION</span>
+      </div>
+    </section>
+
+    <aside class="control-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">BUILD YOUR HIACE</p>
+          <h2>カスタマイズ</h2>
+        </div>
+        <button id="reset" class="reset-btn" title="初期状態に戻す">↺ <span>リセット</span></button>
+      </div>
+
+      <section class="control-section">
+        <div class="section-title"><span class="section-number">01</span><h3>ボディカラー</h3></div>
+        <div class="color-row">
+          <div class="color-preview" id="colorPreview"></div>
+          <div class="color-info">
+            <strong id="colorName">パールホワイト</strong>
+            <small>BODY PAINT</small>
+          </div>
+          <input type="color" id="bodyColor" value="#e8e7e2" aria-label="ボディカラー">
+        </div>
+        <div class="swatches" id="swatches">
+          <button class="swatch active" data-color="#e8e7e2" data-name="パールホワイト" style="--swatch:#e8e7e2" aria-label="パールホワイト"></button>
+          <button class="swatch" data-color="#22262b" data-name="ブラックマイカ" style="--swatch:#22262b" aria-label="ブラックマイカ"></button>
+          <button class="swatch" data-color="#777b7c" data-name="シルバー" style="--swatch:#777b7c" aria-label="シルバー"></button>
+          <button class="swatch" data-color="#53616a" data-name="ガンメタリック" style="--swatch:#53616a" aria-label="ガンメタリック"></button>
+          <button class="swatch" data-color="#263b32" data-name="アーミーグリーン" style="--swatch:#263b32" aria-label="アーミーグリーン"></button>
+          <button class="swatch" data-color="#8d342c" data-name="ボルドー" style="--swatch:#8d342c" aria-label="ボルドー"></button>
+        </div>
+      </section>
+
+      <section class="control-section">
+        <div class="section-title"><span class="section-number">02</span><h3>ホイール</h3></div>
+        <div class="option-grid" id="wheelOptions">
+          <button class="option selected" data-value="factory"><span class="wheel-icon factory"></span><b>純正</b></button>
+          <button class="option" data-value="mesh"><span class="wheel-icon mesh"></span><b>メッシュ</b></button>
+          <button class="option" data-value="dish"><span class="wheel-icon dish"></span><b>ディッシュ</b></button>
+          <button class="option" data-value="sixspoke"><span class="wheel-icon sixspoke"></span><b>6スポーク</b></button>
+          <button class="option" data-value="offroad"><span class="wheel-icon offroad"></span><b>オフロード</b></button>
+          <button class="option" data-value="black"><span class="wheel-icon black"></span><b>ブラック</b></button>
+          <button class="option" data-value="steel"><span class="wheel-icon steel"></span><b>スチール</b></button>
+          <button class="option" data-value="chrome"><span class="wheel-icon chrome"></span><b>クローム</b></button>
+        </div>
+      </section>
+
+      <section class="control-section">
+        <div class="section-title"><span class="section-number">03</span><h3>テールランプ</h3></div>
+        <div class="tail-options" id="tailOptions">
+          <button class="tail-option selected" data-value="factory"><span class="tail-sample factory-tail"></span><b>純正</b></button>
+          <button class="tail-option" data-value="clear"><span class="tail-sample clear-tail"></span><b>クリア</b></button>
+          <button class="tail-option" data-value="smoke"><span class="tail-sample smoke-tail"></span><b>スモーク</b></button>
+          <button class="tail-option" data-value="led"><span class="tail-sample led-tail"></span><b>LED</b></button>
+          <button class="tail-option" data-value="redclear"><span class="tail-sample redclear-tail"></span><b>レッドクリア</b></button>
+        </div>
+      </section>
+
+      <section class="control-section parts-section">
+        <div class="section-title"><span class="section-number">04</span><h3>エクステリアパーツ</h3></div>
+        <label class="part-row">
+          <span><b>オーバーフェンダー</b><small>OVER FENDER</small></span>
+          <input type="checkbox" id="fender"><i class="switch"></i>
+        </label>
+        <label class="part-row">
+          <span><b>マッドフラップ</b><small>MUD FLAP</small></span>
+          <input type="checkbox" id="mudflap"><i class="switch"></i>
+        </label>
+        <label class="part-row">
+          <span><b>フロントリップ</b><small>FRONT LIP</small></span>
+          <input type="checkbox" id="lip"><i class="switch"></i>
+        </label>
+        <label class="part-row">
+          <span><b>ルーフスポイラー</b><small>ROOF SPOILER</small></span>
+          <input type="checkbox" id="spoiler"><i class="switch"></i>
+        </label>
+        <label class="part-row">
+          <span><b>サイドステップ</b><small>SIDE STEP</small></span>
+          <input type="checkbox" id="sidestep"><i class="switch"></i>
+        </label>
+      </section>
+
+      <p class="disclaimer">
+        ※ 200系ハイエースをモチーフにした2Dイラストです。
+        実車の形状・パーツ適合を完全再現するものではありません。
+      </p>
+    </aside>
+  </main>
+
+  <script src="./css/js/vehicle.js"></script>
+</body>
+</html>
